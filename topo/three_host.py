@@ -2,7 +2,7 @@
 
 Two hosts connect by the same middle host.
 
-   host --- switch --- switch --- host
+   host --- host --- host
 
 Adding the 'topos' dict with a key/value pair to generate our newly defined
 topology enables one to pass in '--topo=mytopo' from the command line.
@@ -22,13 +22,11 @@ class MyTopo( Topo ):
         # Add hosts and switches
         leftHost = self.addHost( 'h1' )
         rightHost = self.addHost( 'h2' )
-        leftSwitch = self.addSwitch( 's3' )
-        rightSwitch = self.addSwitch( 's4' )
+        midHost = self.addHost( 'h3' )
 
         # Add links
-        self.addLink( leftHost, leftSwitch )
-        self.addLink( leftSwitch, rightSwitch )
-        self.addLink( rightSwitch, rightHost )
+        self.addLink( leftHost, midHost )
+        self.addLink( midHost, rigntHost )
 
 
 topos = { 'mytopo': ( lambda: MyTopo() ) }
